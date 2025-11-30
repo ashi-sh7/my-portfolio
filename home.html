@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashish Vishwakarma | Personal Portfolio</title>
+    <title>Ashish Vishwakarma | Portfolio</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* ------------------- */
-        /* --- CSS STYLES ---- */
+        /* --- CORE STYLES --- */
         /* ------------------- */
         
         :root {
             --bg-color: #121212;
             --primary-color: #1e1e1e;
             --text-color: #e0e0e0;
-            --accent-color: #00bcd4; /* Ek modern cyan accent */
-            --header-bg: rgba(18, 18, 18, 0.85);
+            --accent-color: #00bcd4; /* Cyan Accent */
+            --header-bg: rgba(18, 18, 18, 0.95);
         }
 
         * {
@@ -30,6 +30,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
@@ -37,20 +38,21 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
         }
 
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.5rem; /* Slightly less padding for mobile safety */
         }
 
-        /* --- Header / Navigation --- */
+        /* --- Header & Navigation --- */
         header {
             background-color: var(--header-bg);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--primary-color);
+            border-bottom: 1px solid #333;
             padding: 1rem 0;
             position: sticky;
             top: 0;
@@ -75,6 +77,7 @@
             color: var(--accent-color);
         }
 
+        /* Desktop Nav */
         .nav-links {
             list-style: none;
             display: flex;
@@ -89,18 +92,34 @@
             color: var(--text-color);
             font-weight: 500;
             transition: color 0.3s ease;
+            font-size: 0.95rem;
         }
 
         .nav-links a:hover {
             color: var(--accent-color);
         }
 
-        /* --- Hero Section (NEW DESIGN) --- */
+        /* Hamburger Menu (Hidden on Desktop) */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: all 0.3s ease-in-out;
+            background-color: var(--text-color);
+        }
+
+        /* --- Hero Section --- */
         #hero {
-            height: 90vh;
+            min-height: 90vh; /* Full screen height */
             display: flex;
             align-items: center;
-            padding: 0 1rem;
+            padding: 2rem 0; /* Reduced padding */
         }
 
         .hero-container {
@@ -116,8 +135,9 @@
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 3rem; /* Desktop size */
             margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
 
         .hero-content h1 span {
@@ -125,310 +145,291 @@
         }
 
         .hero-content .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 300;
             color: var(--text-color);
+            margin-bottom: 2rem;
+            min-height: 3.6rem; /* Keeps layout stable during typing */
         }
         
-        /* Profile Image Styles */
         .hero-image {
-            flex: 0 0 350px; /* Image will take 350px width */
+            flex: 0 0 350px; 
+            display: flex;
+            justify-content: center;
         }
 
         .hero-image img {
-            width: 350px;
-            height: 350px;
-            object-fit: cover; /* Ensures image covers the space */
-            border-radius: 50%; /* Makes it circular */
-            border: 6px solid var(--primary-color);
+            width: 320px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
             box-shadow: 0 0 25px rgba(0, 188, 212, 0.25);
             animation: pulse-shadow 3s infinite ease-in-out;
         }
 
         @keyframes pulse-shadow {
             0% { box-shadow: 0 0 25px rgba(0, 188, 212, 0.25); }
-            50% { box-shadow: 0 0 40px rgba(0, 188, 212, 0.4); }
+            50% { box-shadow: 0 0 45px rgba(0, 188, 212, 0.5); }
             100% { box-shadow: 0 0 25px rgba(0, 188, 212, 0.25); }
         }
 
-        /* CTA Button */
         .cta-button {
             display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.75rem 1.75rem;
+            padding: 0.8rem 2rem;
             background-color: var(--accent-color);
             color: var(--bg-color);
             text-decoration: none;
             font-weight: 700;
-            border-radius: 5px;
+            border-radius: 50px;
             transition: all 0.3s ease;
         }
         .cta-button:hover {
-            background-color: var(--text-color);
-            color: var(--bg-color);
+            background-color: #fff;
             transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
         }
-
 
         /* Typing animation styles */
-        .typing-text {
-            color: var(--accent-color);
-            font-weight: 500;
-        }
+        .typing-text { color: var(--accent-color); font-weight: 600; }
+        .cursor { display: inline-block; width: 3px; background-color: var(--accent-color); animation: blink 0.7s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .cursor {
-            display: inline-block;
-            width: 3px;
-            background-color: var(--accent-color);
-            margin-left: 5px;
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* --- General Section Styling --- */
+        /* --- Sections General --- */
         section {
-            padding: 5rem 0;
+            padding: 4rem 0; /* Standard padding */
         }
-        /* Alternate section background */
         section:nth-of-type(odd) {
             background-color: var(--primary-color);
         }
 
         .section-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             color: var(--accent-color);
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Animation class (toggled by JS) */
+        /* Animation class */
         .animated-section {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-
         .animated-section.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- About Section --- */
-        #about p {
-            font-size: 1.1rem;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-            color: #c0c0c0; /* Slightly lighter text */
-        }
-
-        /* --- Skills Section --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-item {
-            background-color: var(--primary-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2);
-        }
-
-        /* --- Education & Training Section --- */
-        .timeline {
-            position: relative;
+        /* --- About & Skills --- */
+        .about-text {
             max-width: 900px;
             margin: 0 auto;
+            font-size: 1rem;
+            color: #d1d1d1;
         }
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .highlight-item {
+            background: rgba(255,255,255,0.03);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color);
+        }
+        .highlight-item h3 { color: var(--accent-color); font-size: 1.1rem; margin-bottom: 0.5rem; }
 
+        /* Skills Grid */
+        .skills-category { margin-bottom: 2rem; }
+        .skills-category h3 { text-align: center; margin-bottom: 1rem; font-size: 1.2rem; }
+        .skills-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; }
+        .skill-item {
+            background-color: var(--bg-color);
+            border: 1px solid #333;
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .skill-item:hover { border-color: var(--accent-color); color: var(--accent-color); }
+
+        /* --- Timeline (Education) --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        /* The vertical line */
         .timeline::after {
             content: '';
             position: absolute;
-            width: 3px;
-            background-color: var(--primary-color);
+            width: 2px;
+            background-color: #333;
             top: 0;
             bottom: 0;
             left: 50%;
-            margin-left: -1.5px;
+            margin-left: -1px;
         }
-
         .timeline-item {
-            padding: 1rem 2.5rem;
+            padding: 10px 40px;
             position: relative;
-            background-color: inherit;
             width: 50%;
+            box-sizing: border-box;
         }
-
         .timeline-item::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
+            width: 16px;
+            height: 16px;
+            right: -8px;
             background-color: var(--bg-color);
-            border: 4px solid var(--accent-color);
+            border: 3px solid var(--accent-color);
             top: 20px;
             border-radius: 50%;
             z-index: 1;
         }
-
-        .timeline-item.left {
-            left: 0;
-            padding-right: 25px;
-        }
-
-        .timeline-item.right {
-            left: 50%;
-            padding-left: 25px;
-        }
-
-        .timeline-item.left::after {
-            right: -10px;
-        }
-
-        .timeline-item.right::after {
-            left: -10px;
-        }
+        
+        .left { left: 0; text-align: right; }
+        .right { left: 50%; }
+        .left::after { right: -8px; }
+        .right::after { left: -8px; }
 
         .timeline-content {
             padding: 1.5rem;
             background-color: var(--primary-color);
-            position: relative;
             border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* --- Contact --- */
+        .contact-box {
+            text-align: center;
+            background: var(--primary-color);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #333;
+        }
+        .email-link {
+            font-size: 1.2rem; /* Adjusted for mobile safety */
+            color: var(--accent-color);
+            font-weight: 700;
+            word-break: break-all; /* Ensures email doesn't overflow screen */
         }
         
-        .timeline-content h3 {
-            font-size: 1.25rem;
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-        }
-        .timeline-content p {
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            color: #b0b0b0;
-        }
-        .timeline-content .date {
-            font-size: 0.8rem;
-            font-weight: 300;
-            font-style: italic;
-        }
-        .timeline-content .score {
-            font-weight: 700;
-            color: var(--text-color);
-        }
-
-        /* --- Contact Section (NEW DESIGN) --- */
-        #contact .contact-info {
-            text-align: center;
-        }
-
-        #contact p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        #contact .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        #contact .contact-links a,
-        #contact .contact-links p {
-            color: var(--text-color);
-            background-color: var(--primary-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            margin: 0;
-        }
-
-        #contact .contact-links a:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2);
-            opacity: 1;
-        }
-
-
-        /* --- Footer --- */
         footer {
             text-align: center;
             padding: 2rem 0;
-            margin-top: 3rem;
-            background-color: var(--primary-color);
-            font-size: 0.9rem;
+            background-color: #0f0f0f;
+            font-size: 0.8rem;
+            color: #777;
         }
 
-        /* --- Responsive Design --- */
+        /* ========================================= */
+        /* === MOBILE RESPONSIVENESS (Magic Here) === */
+        /* ========================================= */
+        
         @media (max-width: 768px) {
+            
+            /* 1. Header & Hamburger Menu */
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
             .nav-links {
-                display: none;
+                position: fixed;
+                left: -100%;
+                top: 0; /* Just below header if desired, or top 0 for full overlay */
+                gap: 0;
+                flex-direction: column;
+                background-color: rgba(18, 18, 18, 0.98); /* Solid bg */
+                width: 100%;
+                height: 100vh; /* Full screen menu */
+                text-align: center;
+                transition: 0.3s ease-in-out;
+                padding-top: 5rem;
+                z-index: 999;
             }
 
-            /* Hero responsive */
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 2rem 0;
+            }
+            .nav-links a {
+                font-size: 1.5rem;
+            }
+
+            /* 2. Hero Section Mobile */
             #hero {
-                height: auto;
-                padding: 4rem 1rem;
+                min-height: auto;
+                padding-top: 3rem;
+                padding-bottom: 3rem;
             }
             .hero-container {
-                flex-direction: column-reverse; /* Image on top */
-            }
-            .hero-content {
+                flex-direction: column-reverse; /* Image Top, Text Bottom */
                 text-align: center;
             }
+            .hero-content h1 {
+                font-size: 2rem; /* Smaller font for mobile */
+            }
             .hero-image {
-                flex-basis: 250px;
-                margin-bottom: 2rem;
+                flex: 0 0 250px;
             }
             .hero-image img {
                 width: 250px;
                 height: 250px;
             }
-
-            .section-title {
-                font-size: 2rem;
+            .subtitle {
+                font-size: 1rem;
             }
 
-            /* Timeline adjustments */
+            /* 3. Timeline Mobile (One-sided) */
             .timeline::after {
-                left: 15px;
+                left: 20px; /* Line moves to left */
             }
-
             .timeline-item {
                 width: 100%;
-                padding-left: 45px;
+                padding-left: 50px; /* Push content right of line */
                 padding-right: 10px;
             }
-
             .timeline-item.left, .timeline-item.right {
-                left: 0%;
+                left: 0;
+                text-align: left; /* Align text left for readability */
+            }
+            
+            /* Fix dots */
+            .timeline-item.left::after, .timeline-item.right::after {
+                left: 11px; /* Center dot on the line */
             }
 
-            .timeline-item.left::after, .timeline-item.right::after {
-                left: 5px;
+            /* 4. General Padding adjustments */
+            section {
+                padding: 3rem 0;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .about-highlights {
+                grid-template-columns: 1fr; /* Stack highlights */
+            }
+            
+            .contact-box {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -436,24 +437,33 @@
 <body>
 
     <header>
-        <nav class="container">
-            <a href="#" class="logo">Ashish<span>.V</span></a>
-            <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Ashish<span>.V</span></a>
+                
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="#hero" class="nav-link-item">Home</a></li>
+                    <li><a href="#about" class="nav-link-item">About</a></li>
+                    <li><a href="#skills" class="nav-link-item">Skills</a></li>
+                    <li><a href="#education" class="nav-link-item">Journey</a></li>
+                    <li><a href="#contact" class="nav-link-item">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <section id="hero">
         <div class="container hero-container">
             <div class="hero-content">
-                <h1>Hi, I'm <span>Ashish Vishwakarma</span></h1>
-                <p class="subtitle">I'm a <span class="typing-text"></span><span class="cursor"></span></p>
-                <a href="#contact" class="cta-button">Get In Touch</a>
+                <h1>Hi, I'm <br><span>Ashish Vishwakarma</span></h1>
+                <p class="subtitle"><span class="typing-text"></span><span class="cursor"></span></p>
+                <a href="#contact" class="cta-button">Connect With Me</a>
             </div>
             <div class="hero-image">
                 <img src="pic.jpg" alt="Ashish Vishwakarma">
@@ -464,44 +474,86 @@
     <section id="about" class="animated-section">
         <div class="container">
             <h2 class="section-title">About Me</h2>
-            <p>
-                "To leverage my technical skills and passion for innovation to contribute to groundbreaking research and development within a dynamic and collaborative environment."
-            </p>
+            <div class="about-text">
+                <p>
+                    I am a B.Tech Biotechnology undergraduate driven by the potential to revolutionize life sciences through data-driven solutions. My goal is to bridge the gap between complex biological challenges and advanced technology.
+                </p>
+                
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <h3>🔬 Bioinformatics & Data Science</h3>
+                        <p>Hands-on experience in Python (Pandas, NumPy) for data manipulation. Proficient in SQL and RDBMS.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h3>💻 Linux & Security</h3>
+                        <p>Mastered Linux System Administration (Kali Linux) and Networking. Strong grasp of Genomic Data Privacy.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h3>🌐 Web Development</h3>
+                        <p>Capable of building web-based dashboards and tools for biological data visualization.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h3>🚀 Vision</h3>
+                        <p>Decoding the Future: Genetics, AI & You.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="skills" class="animated-section">
         <div class="container">
-            <h2 class="section-title">My Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item">HTML</div>
-                <div class="skill-item">CSS</div>
-                <div class="skill-item">JavaScript</div>
-                <div class="skill-item">React</div>
-                <div class="skill-item">Python</div>
-                <div class="skill-item">C Programming</div>
-                <div class="skill-item">DBMS</div>
-                <div class="skill-item">MySQL</div>
-                <div class="skill-item">PHP</div>
-                <div class="skill-item">Bootstrap</div>
-                <div class="skill-item">SEO</div>
-                <div class="skill-item">Content Writing</div>
-                <div class="skill-item">Blogging</div>
-                <div class="skill-item">MS-Office</div>
+            <h2 class="section-title">Technical Arsenal</h2>
+            
+            <div class="skills-category">
+                <h3>Bioinformatics & Data</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">Bioinformatics</div>
+                    <div class="skill-item">Computational Biology</div>
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">Pandas</div>
+                    <div class="skill-item">NumPy</div>
+                    <div class="skill-item">Data Analysis</div>
+                    <div class="skill-item">Genetics</div>
+                </div>
             </div>
+
+            <div class="skills-category">
+                <h3>Core Tech & Security</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">Linux (Kali)</div>
+                    <div class="skill-item">SysAdmin</div>
+                    <div class="skill-item">C Programming</div>
+                    <div class="skill-item">DBMS</div>
+                    <div class="skill-item">SQL</div>
+                    <div class="skill-item">Data Structures</div>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h3>Web Development</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">HTML</div>
+                    <div class="skill-item">CSS</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">React.js</div>
+                    <div class="skill-item">Bootstrap</div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <section id="education" class="animated-section">
         <div class="container">
-            <h2 class="section-title">Education & Training</h2>
+            <h2 class="section-title">Journey</h2>
             <div class="timeline">
                 
                 <div class="timeline-item right">
                     <div class="timeline-content">
                         <h3>B.Tech - Biotechnology</h3>
-                        <p>Ashoka Institute Of Technology And Management, Varanasi</p>
-                        <span class="date">2023 - 2027</span>
+                        <p>Ashoka Institute Of Technology And Management</p>
+                        <span>2023 - 2027 | Varanasi, UP</span>
                     </div>
                 </div>
 
@@ -509,25 +561,23 @@
                     <div class="timeline-content">
                         <h3>Web Development Training</h3>
                         <p>Internshala (Online)</p>
-                        <p>HTML, CSS, Bootstrap, DBMS, PHP, JS, React, AI in Web Dev.</p>
-                        <p class="score">Scored 57% in final assessment.</p>
-                        <span class="date">Nov 2024 - Jan 2025</span>
+                        <span>Nov 2024 - Jan 2025</span>
                     </div>
                 </div>
 
                 <div class="timeline-item right">
                     <div class="timeline-content">
-                        <h3>Web Development (Current)</h3>
-                        <p>Internshala (Online)</p>
-                        <span class="date">Dec 2024 - Present</span>
+                        <h3>Founder</h3>
+                        <p>arcsciencepedia</p>
+                        <span>Current</span>
                     </div>
                 </div>
 
                 <div class="timeline-item left">
                     <div class="timeline-content">
-                        <h3>ADCA</h3>
-                        <p>Galaxy Institute Of Computer Science, Pandeypur</p>
-                        <span class="date">Sep 2016 - Sep 2017</span>
+                        <h3>ADCA Certification</h3>
+                        <p>Galaxy Institute Of Computer Science</p>
+                        <span>2016 - 2017</span>
                     </div>
                 </div>
 
@@ -538,62 +588,76 @@
     <section id="contact" class="animated-section">
         <div class="container">
             <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-info">
-                <p>I'm open to new opportunities and collaborations.</p>
-                <div class="contact-links">
-                    <a href="mailto:ashishvishwvns@gmail.com">ashishvishwvns@gmail.com</a>
-                    <a href="tel:+917355656703">+91 7355656703</a>
-                    <p>Varanasi</p>
-                </div>
+            <div class="contact-box">
+                <p style="margin-bottom: 1rem; color: #aaa;">
+                    Open for opportunities in Biotech, Coding, and Security.
+                </p>
+                <a href="mailto:kumarashivns@gmail.com" class="email-link">kumarashivns@gmail.com</a>
+                <p style="margin-top: 1rem; color: var(--accent-color);">📍 Varanasi, Uttar Pradesh</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Ashish Vishwakarma. All rights reserved.</p>
+        <p>&copy; 2025 Ashish Vishwakarma. Built with Code & Biology.</p>
     </footer>
 
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            // --- Typing Animation Script ---
+            // --- 1. Hamburger Menu Logic ---
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const navItems = document.querySelectorAll('.nav-link-item');
+
+            // Toggle menu on hamburger click
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close menu when a link is clicked
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // --- 2. Typing Animation ---
             const typingTextElement = document.querySelector('.typing-text');
             const texts = [
+                "Founder, arcsciencepedia",
                 "B.Tech Biotech Student",
                 "Genetics & Bioinformatics Enthusiast",
-                "Science & Technology Analyst",
-                "Founder, arcsciencepedia",
-                "Web Developer"
+                "Decoding the Future: Genetics & AI"
             ];
+            
             let textIndex = 0;
             let charIndex = 0;
             let isDeleting = false;
-            const typeSpeed = 100;
-            const deleteSpeed = 50;
+            const typeSpeed = 80;
+            const deleteSpeed = 40;
             const delayBetweenTexts = 2000;
 
             function type() {
                 const currentText = texts[textIndex];
                 
                 if (isDeleting) {
-                    // Remove character
                     typingTextElement.textContent = currentText.substring(0, charIndex - 1);
                     charIndex--;
                 } else {
-                    // Add character
                     typingTextElement.textContent = currentText.substring(0, charIndex + 1);
                     charIndex++;
                 }
 
                 let speed = isDeleting ? deleteSpeed : typeSpeed;
 
-                // Check if text is fully typed
                 if (!isDeleting && charIndex === currentText.length) {
                     speed = delayBetweenTexts;
                     isDeleting = true;
                 } 
-                // Check if text is fully deleted
                 else if (isDeleting && charIndex === 0) {
                     isDeleting = false;
                     textIndex = (textIndex + 1) % texts.length;
@@ -603,30 +667,20 @@
                 setTimeout(type, speed);
             }
 
-            // Start typing animation
-            if (typingTextElement) {
-                type();
-            }
+            if (typingTextElement) type();
 
 
-            // --- Scroll Animation Script ---
+            // --- 3. Scroll Animation ---
             const animatedSections = document.querySelectorAll('.animated-section');
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
-            }, {
-                threshold: 0.1 // Trigger when 10% of the element is visible
-            });
+            }, { threshold: 0.1 });
 
-            // Observe all animated sections
-            animatedSections.forEach(section => {
-                observer.observe(section);
-            });
-
+            animatedSections.forEach(section => observer.observe(section));
         });
     </script>
 
